@@ -7,9 +7,9 @@ const CocktailShort = (props) => {
         <img className="thumbnail" src={props.thumbnail} alt=""></img>
       </td>
       <td>
-        <p>
+        <h3>
           <strong>{props.name}</strong>
-        </p>
+        </h3>
         <p>
           <strong>Category: </strong>
           {props.category}

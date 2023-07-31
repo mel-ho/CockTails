@@ -16,6 +16,12 @@ body {
 a {
   text-align: center;
 }
+
+h3 {
+  font-size: medium;
+  color: teal;
+}
+
 .icon {
   width: 10%;
   margin: 0.5rem auto;
@@ -28,7 +34,7 @@ a {
 
 .thumbnail {
   padding: 1rem;
-  width: 80%;
+  width: 100%;
 }
 .cocktail {
   width: 40%;
