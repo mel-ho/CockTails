@@ -1,7 +1,12 @@
 import React from "react";
+import CocktailSearch from "./CocktailSearch";
 
 const DIY = () => {
-  return <div></div>;
+  return (
+    <div>
+      <CocktailSearch></CocktailSearch>
+    </div>
+  );
 };
 
 export default DIY;

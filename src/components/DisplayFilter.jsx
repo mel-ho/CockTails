@@ -1,27 +1,28 @@
 import React, { useEffect, useState } from "react";
 import CocktailShorts from "./CocktailShort";
 import { useParams } from "react-router-dom";
-import Directory from "./Directory";
+import FilterBar from "./FilterBar";
 
 const DisplayFilter = () => {
-  const [cocktailsByAlpha, setCocktailsByAlpha] = useState([]);
+  const [cocktailsByGlass, setCocktailsByGlass] = useState([]);
   const params = useParams();
 
-  const getCocktailsByAlpha = async (alphabet) => {
+  const getCocktailsByGlass = async (glass) => {
     const res = await fetch(
-      `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${params.item}`
+      `https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=${params.item}`
     );
     const data = await res.json();
-    setCocktailsByAlpha(data.drinks);
+    setCocktailsByGlass(data.drinks);
   };
 
   useEffect(() => {
-    getCocktailsByAlpha(params.item);
+    getCocktailsByGlass(params.item);
   }, [params.item]);
 
   return (
     <div className="container">
-      <Directory></Directory>
+      <FilterBar></FilterBar>
+      <br />
       <table style={{ width: "100%" }}>
         <thead>
           <tr>
@@ -30,7 +31,7 @@ const DisplayFilter = () => {
           </tr>
         </thead>
         <tbody>
-          {cocktailsByAlpha.map((item, idx) => {
+          {cocktailsByGlass.map((item, idx) => {
             return (
               <CocktailShorts
                 key={idx}

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import DisplayFilter from "./DisplayFilter";
 
-const Filter = () => {
+const FilterBar = () => {
   const [categories, setCategories] = useState([]);
   const [glasses, setGlasses] = useState([]);
   const [ingredients, setIngredients] = useState([]);
@@ -47,33 +46,40 @@ const Filter = () => {
 
   return (
     <div>
-      <div className="filterbar">
+      <div>
+        <label className="col-md-3">Category</label>
         <select>
           {categories.map((item, idx) => {
             return <option key={idx}>{item.strCategory}</option>;
           })}
         </select>
+      </div>
+      <div>
+        <label className="col-md-3">Glasses</label>
         <select>
           {glasses.map((item, idx) => {
             return <option key={idx}>{item.strGlass}</option>;
           })}
         </select>
+      </div>
+      <div>
+        <label className="col-md-3">Ingredients</label>
         <select>
           {ingredients.map((item, idx) => {
             return <option key={idx}>{item.strIngredient1}</option>;
           })}
         </select>
+      </div>
+      <div>
+        <label className="col-md-3">Alcoholic</label>
         <select>
           {alcoholic.map((item, idx) => {
             return <option key={idx}>{item.strAlcoholic}</option>;
           })}
         </select>
       </div>
-      <div className="display">
-        <DisplayFilter></DisplayFilter>
-      </div>
     </div>
   );
 };
 
-export default Filter;
+export default FilterBar;
