@@ -25,3 +25,7 @@ Given these, decided on a app that has the four functionalities
 3. Filter Function: filter for cocktail types based on certain parameters (e.g. category/ ingredients / alcoholic)
 4. Search Function : search by cocktail name to display 1 cocktail
 
+### Process & Challenges:
+- not much documentation available for the API, so had to figure out what was the response and how to get it into the format needed
+- creation of navigation bars and routes used react-router
+- 
