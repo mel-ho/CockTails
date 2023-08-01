@@ -30,7 +30,7 @@ Given these, decided on a app that has the four functionalities
 - creation of navigation bars and route paths were done used react-router
 - Cocktail of the Day Page: To fetch and display a random cocktail. created a cocktail component so that it could be used subsequently if needed
 - Directory: api had listings based on alphabets. made use of that to pull out the cocktails based on alphabets. useParmas was used to dynamically create the individual pages insted of creating 26 pages.
-  - *Pending* currently if there's no cocktail in the alphabet a blank page is returned (e.g. X). need to redirect that or fix.
+  - **Pending** currently if there's no cocktail in the alphabet a blank page is returned (e.g. X). need to redirect that or fix.
 - Search: search function requires the cocktail ID and can't search with just the cocktail name. Had to use the name to search the id before being able to search out the full details of the cocktail.
 - Filter: used the various filter listings to populate the filter parameters.
-  - available api has the ability to filter base on one parameter. plan to use that api to pull out the first list of cocktails before using a function to filter for the other cocktail more parameters are selected.
+  - **Pending** available api has the ability to filter base on one parameter. plan to use that api to pull out the first list of cocktails before using a function to filter for the other cocktail more parameters are selected.
