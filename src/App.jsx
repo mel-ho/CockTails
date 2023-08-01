@@ -7,6 +7,7 @@ import DIY from "./components/DIY";
 import Directory from "./components/Directory";
 import NavBar from "./components/NavBar";
 import DirectorybyAlpha from "./components/DirectoryByAlpha";
+import CocktailbyID from "./components/CocktailbyID";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <Route path="/random" element={<Random />} />
         <Route path="/filter" element={<FilterDisplay />} />
         <Route path="/directory" element={<Directory />} />
-        <Route path="/directory/:item" element={<DirectorybyAlpha />} />
+        <Route path="/directory/:alpha" element={<DirectorybyAlpha />} />
         <Route path="/diy" element={<DIY />} />
       </Routes>
     </div>

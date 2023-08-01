@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CocktailShorts from "./CocktailShort";
+import CocktailShort from "./CocktailShort";
 import { useParams } from "react-router-dom";
 import Directory from "./Directory";
 
@@ -7,17 +7,17 @@ const DirectorybyAlpha = () => {
   const [cocktailsByAlpha, setCocktailsByAlpha] = useState([]);
   const params = useParams();
 
-  const getCocktailsByAlpha = async (alphabet) => {
+  const getCocktailsByAlpha = async () => {
     const res = await fetch(
-      `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${params.item}`
+      `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${params.alpha}`
     );
     const data = await res.json();
     setCocktailsByAlpha(data.drinks);
   };
 
   useEffect(() => {
-    getCocktailsByAlpha(params.item);
-  }, [params.item]);
+    getCocktailsByAlpha(params.alpha);
+  }, [params.alpha]);
 
   return (
     <div className="container">
@@ -32,14 +32,14 @@ const DirectorybyAlpha = () => {
         <tbody>
           {cocktailsByAlpha.map((item, idx) => {
             return (
-              <CocktailShorts
+              <CocktailShort
                 key={idx}
                 name={item.strDrink}
                 category={item.strCategory}
                 alcohol={item.strAlcoholic}
                 glass={item.strGlass}
                 thumbnail={item.strDrinkThumb}
-              ></CocktailShorts>
+              ></CocktailShort>
             );
           })}
         </tbody>

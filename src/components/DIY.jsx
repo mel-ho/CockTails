@@ -1,10 +1,10 @@
 import React from "react";
-import CocktailSearch from "./CocktailSearch";
+import DIYSearch from "./DIYSearch";
 
 const DIY = () => {
   return (
     <div>
-      <CocktailSearch></CocktailSearch>
+      <DIYSearch></DIYSearch>
     </div>
   );
 };
