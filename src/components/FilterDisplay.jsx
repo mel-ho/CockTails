@@ -3,21 +3,26 @@ import CocktailShorts from "./CocktailShort";
 import { useParams } from "react-router-dom";
 import FilterBar from "./FilterBar";
 
-const DisplayFilter = () => {
+const FilterDisplay = () => {
   const [cocktailsByGlass, setCocktailsByGlass] = useState([]);
   const params = useParams();
 
+  // useParams("Cocktail_glass");
+  // console.log(params);
+
   const getCocktailsByGlass = async (glass) => {
     const res = await fetch(
-      `https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=${params.item}`
+      `https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass`
     );
     const data = await res.json();
     setCocktailsByGlass(data.drinks);
   };
 
   useEffect(() => {
-    getCocktailsByGlass(params.item);
-  }, [params.item]);
+    getCocktailsByGlass();
+  }, []);
+
+  console.log(cocktailsByGlass);
 
   return (
     <div className="container">
@@ -49,4 +54,4 @@ const DisplayFilter = () => {
   );
 };
 
-export default DisplayFilter;
+export default FilterDisplay;
