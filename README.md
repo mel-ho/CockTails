@@ -1,10 +1,10 @@
 # App Name: Cocktails
+Deployed on Netlify : https://cocktails04082023.netlify.app/
 
 ### Background
 To create a React App that helps you find cocktail inspirations using the public API https://www.thecocktaildb.com/api.php
 
 ### Technologies Used:
-
 - JavaScript
 - HTML
 - CSS
