@@ -34,9 +34,10 @@ Given these, decided on a app that has the four functionalities
 - Filter: used the various filter listings to populate the filter parameters. initially tried to filter by one parameter then the next then the next, but this kept turning and error. ended up filtering for a list for each parameter then matching each cocktail to see that they overlap in all three lists.
 
 ### Current Bugs:
-- Directory: currently if there's no cocktail in the alphabet a blank page is returned (e.g. X). should put in a "no cocktails starting with this alphabet" response
+- Directory: currently if there's no cocktail in the alphabet a blank page is returned (e.g. X). should put in a "no cocktails starting with this alphabet" response (UPDATE: manually removed the two alphabets from the alphabet listing)
 - Filter page: fetch too much data and thus loads slowly. sometimes needs to click the submit button multiple times before a response is obtained. loading spinner would probably be a good addition here.
 - Search page: if cocktail doesn't exist nothing shows. should put in a "cocktail not found" response
 
 ### Future improvements:
-- being able to click into the cocktails for a full listing from the directory and the filter pages.
+- being able to click into the cocktails for a full listing from the directory (UPDATE: this has been added) and the filter pages.
+- being able to filter by ingredients
