@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-const FilterBar = () => {
+const FilterBar = (props) => {
   const [categories, setCategories] = useState([]);
   const [glasses, setGlasses] = useState([]);
-  const [ingredients, setIngredients] = useState([]);
   const [alcoholic, setAlcoholic] = useState([]);
 
   const getCategories = async () => {
@@ -22,14 +21,6 @@ const FilterBar = () => {
     setGlasses(data.drinks);
   };
 
-  const getIngredients = async () => {
-    const res = await fetch(
-      "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"
-    );
-    const data = await res.json();
-    setIngredients(data.drinks);
-  };
-
   const getAlcoholic = async () => {
     const res = await fetch(
       "https://www.thecocktaildb.com/api/json/v1/1/list.php?a=list"
@@ -37,10 +28,10 @@ const FilterBar = () => {
     const data = await res.json();
     setAlcoholic(data.drinks);
   };
+
   useEffect(() => {
     getCategories();
     getGlasses();
-    getIngredients();
     getAlcoholic();
   }, []);
 
@@ -48,7 +39,8 @@ const FilterBar = () => {
     <div>
       <div>
         <label className="col-md-3">Category</label>
-        <select>
+        <select onChange={props.onCategoryChange}>
+          <option value="">Select Category</option>
           {categories.map((item, idx) => {
             return <option key={idx}>{item.strCategory}</option>;
           })}
@@ -56,23 +48,17 @@ const FilterBar = () => {
       </div>
       <div>
         <label className="col-md-3">Glasses</label>
-        <select>
+        <select onChange={props.onGlassChange}>
+          <option value="">Select Glass</option>
           {glasses.map((item, idx) => {
             return <option key={idx}>{item.strGlass}</option>;
           })}
         </select>
       </div>
       <div>
-        <label className="col-md-3">Ingredients</label>
-        <select>
-          {ingredients.map((item, idx) => {
-            return <option key={idx}>{item.strIngredient1}</option>;
-          })}
-        </select>
-      </div>
-      <div>
         <label className="col-md-3">Alcoholic</label>
-        <select>
+        <select onChange={props.onAlcoholicChange}>
+          <option value="">Select Alcoholic Level</option>
           {alcoholic.map((item, idx) => {
             return <option key={idx}>{item.strAlcoholic}</option>;
           })}

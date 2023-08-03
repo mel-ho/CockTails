@@ -1,55 +1,92 @@
-import React, { useEffect, useState } from "react";
-import CocktailShorts from "./CocktailShort";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import CocktailbyIDshort from "./CocktailbyIDshort";
 import FilterBar from "./FilterBar";
 
 const FilterDisplay = () => {
-  const [cocktailsByGlass, setCocktailsByGlass] = useState([]);
-  const params = useParams();
+  const [cocktailsFiltered, setcocktailsFiltered] = useState([]);
+  const [cocktailsFbyCategory, setCocktailsFbyCategory] = useState([]);
+  const [cocktailsFbyGlass, setCocktailsFbyGlass] = useState([]);
+  const [cocktailsFbyAlcoholic, setCocktailsFbyAlcoholic] = useState([]);
+  const [filterCategory, setfilterCategory] = useState("");
+  const [filterGlass, setfilterGlass] = useState("");
+  const [filterAlcoholic, setfilterAlcoholic] = useState("");
 
-  // useParams("Cocktail_glass");
-  // console.log(params);
+  const getInitialFilter = async () => {
+    try {
+      setcocktailsFiltered([]);
 
-  const getCocktailsByGlass = async (glass) => {
-    const res = await fetch(
-      `https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass`
-    );
-    const data = await res.json();
-    setCocktailsByGlass(data.drinks);
+      if (filterCategory) {
+        const res = await fetch(
+          `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${filterCategory}`
+        );
+        // console.log(url);
+        const dataCategory = await res.json();
+        // console.log(dataCategory);
+        setCocktailsFbyCategory(dataCategory.drinks);
+      }
+      if (filterGlass) {
+        const res = await fetch(
+          `https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=${filterGlass}`
+        );
+        const dataGlass = await res.json();
+        setCocktailsFbyGlass(dataGlass.drinks);
+      }
+      if (filterAlcoholic) {
+        const res = await fetch(
+          `https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=${filterAlcoholic}`
+        );
+        const dataAlcoholic = await res.json();
+        setCocktailsFbyAlcoholic(dataAlcoholic.drinks);
+      }
+
+      const filteredData = cocktailsFbyCategory
+        .filter((categoryItem) =>
+          cocktailsFbyGlass.some(
+            (glassItem) => glassItem.idDrink === categoryItem.idDrink
+          )
+        )
+        .filter((glassItem) =>
+          cocktailsFbyAlcoholic.some(
+            (alcoholicItem) => alcoholicItem.idDrink === glassItem.idDrink
+          )
+        );
+
+      setcocktailsFiltered(filteredData);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
   };
 
   useEffect(() => {
-    getCocktailsByGlass();
+    getInitialFilter();
   }, []);
-
-  console.log(cocktailsByGlass);
 
   return (
     <div className="container">
-      <FilterBar></FilterBar>
-      <br />
-      <table style={{ width: "100%" }}>
-        <thead>
-          <tr>
-            <th style={{ width: "20%" }}>Picture</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cocktailsByGlass.map((item, idx) => {
+      <FilterBar
+        onCategoryChange={(e) => setfilterCategory(e.target.value)}
+        onGlassChange={(e) => setfilterGlass(e.target.value)}
+        onAlcoholicChange={(e) => setfilterAlcoholic(e.target.value)}
+      ></FilterBar>
+      <button type="submit" onClick={getInitialFilter}>
+        Submit
+      </button>
+
+      <hr />
+      {cocktailsFiltered.length > 0 && (
+        <div className="row">
+          {cocktailsFiltered.map((item, idx) => {
             return (
-              <CocktailShorts
-                key={idx}
-                name={item.strDrink}
-                category={item.strCategory}
-                alcohol={item.strAlcoholic}
-                glass={item.strGlass}
-                thumbnail={item.strDrinkThumb}
-              ></CocktailShorts>
+              <div className="col-md-3">
+                <CocktailbyIDshort
+                  key={idx}
+                  id={item.idDrink}
+                ></CocktailbyIDshort>
+              </div>
             );
           })}
-        </tbody>
-      </table>
+        </div>
+      )}
     </div>
   );
 };

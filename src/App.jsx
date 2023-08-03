@@ -7,7 +7,6 @@ import DIY from "./components/DIY";
 import Directory from "./components/Directory";
 import NavBar from "./components/NavBar";
 import DirectorybyAlpha from "./components/DirectoryByAlpha";
-import CocktailbyID from "./components/CocktailbyID";
 
 function App() {
   return (
