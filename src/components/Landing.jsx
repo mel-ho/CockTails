@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Landing = () => {
   return (
@@ -6,10 +7,13 @@ const Landing = () => {
       <div>
         <img src="CTicon.ico" className="icon" alt="" />
       </div>
-      <div>
-        <a className="centered" href="/random">
-          Click here to get a drink
-        </a>
+      <div className="centered">
+        <NavLink
+          className={(navData) => (navData.isActive ? styles.active : "")}
+          to="/random"
+        >
+          Click to get a drink!
+        </NavLink>
       </div>
     </div>
   );
