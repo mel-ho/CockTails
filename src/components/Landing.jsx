@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 const Landing = () => {
   return (
     <div>
-      <div>
+      <div className="centered">
         <NavLink
           className={(navData) => (navData.isActive ? styles.active : "")}
           to="/random"
@@ -12,7 +12,7 @@ const Landing = () => {
           <img src="CTicon.ico" className="icon" alt="" />
         </NavLink>
       </div>
-      <div className="centered">
+      <div>
         <NavLink
           className={(navData) => (navData.isActive ? styles.active : "")}
           to="/random"
