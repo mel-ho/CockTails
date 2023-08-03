@@ -6,7 +6,10 @@ const Directory = () => {
   const alphabets = [];
 
   for (let i = 65; i <= 90; i++) {
-    alphabets.push(String.fromCharCode(i));
+    const letter = String.fromCharCode(i);
+    if (letter !== "U" && letter !== "X") {
+      alphabets.push(letter);
+    }
   }
 
   return (
