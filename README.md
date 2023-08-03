@@ -40,3 +40,4 @@ Given these, decided on a app that has the four functionalities
 
 ### Future improvements:
 - being able to click into the cocktails for a full listing from the directory (UPDATE: this has been added) and the filter pages.
+- being able to filter by ingredients
