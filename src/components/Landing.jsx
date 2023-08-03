@@ -9,10 +9,10 @@ const Landing = () => {
           className={(navData) => (navData.isActive ? styles.active : "")}
           to="/random"
         >
-          <img src="CTicon.ico" className="icon" alt="" />
+          <img src="https://i.imgur.com/Rt3DuNX.jpg" alt="" />
         </NavLink>
       </div>
-      <div>
+      <div className="centered">
         <NavLink
           className={(navData) => (navData.isActive ? styles.active : "")}
           to="/random"
