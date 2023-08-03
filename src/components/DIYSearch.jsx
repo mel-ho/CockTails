@@ -11,6 +11,7 @@ const DIYSearch = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setSearchID("");
     try {
       const res = await fetch(
         `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`
