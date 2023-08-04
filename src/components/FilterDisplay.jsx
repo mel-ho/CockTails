@@ -1,43 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CocktailbyIDshort from "./CocktailbyIDshort";
 import FilterBar from "./FilterBar";
 
 const FilterDisplay = () => {
   const [cocktailsFiltered, setcocktailsFiltered] = useState([]);
-  const [cocktailsFbyCategory, setCocktailsFbyCategory] = useState([]);
-  const [cocktailsFbyGlass, setCocktailsFbyGlass] = useState([]);
-  const [cocktailsFbyAlcoholic, setCocktailsFbyAlcoholic] = useState([]);
   const [filterCategory, setfilterCategory] = useState("");
   const [filterGlass, setfilterGlass] = useState("");
   const [filterAlcoholic, setfilterAlcoholic] = useState("");
 
+  const fetchData = async (url) => {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data.drinks;
+  };
+
   const getInitialFilter = async () => {
     try {
-      setcocktailsFiltered([]);
+      const categoryPromise = filterCategory
+        ? fetchData(
+            `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${filterCategory}`
+          )
+        : Promise.resolve([]);
 
-      if (filterCategory) {
-        const res = await fetch(
-          `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${filterCategory}`
-        );
-        // console.log(url);
-        const dataCategory = await res.json();
-        // console.log(dataCategory);
-        setCocktailsFbyCategory(dataCategory.drinks);
-      }
-      if (filterGlass) {
-        const res = await fetch(
-          `https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=${filterGlass}`
-        );
-        const dataGlass = await res.json();
-        setCocktailsFbyGlass(dataGlass.drinks);
-      }
-      if (filterAlcoholic) {
-        const res = await fetch(
-          `https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=${filterAlcoholic}`
-        );
-        const dataAlcoholic = await res.json();
-        setCocktailsFbyAlcoholic(dataAlcoholic.drinks);
-      }
+      const glassPromise = filterGlass
+        ? fetchData(
+            `https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=${filterGlass}`
+          )
+        : Promise.resolve([]);
+
+      const alcoholicPromise = filterAlcoholic
+        ? fetchData(
+            `https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=${filterAlcoholic}`
+          )
+        : Promise.resolve([]);
+
+      const [cocktailsFbyCategory, cocktailsFbyGlass, cocktailsFbyAlcoholic] =
+        await Promise.all([categoryPromise, glassPromise, alcoholicPromise]);
 
       const filteredData = cocktailsFbyCategory
         .filter((categoryItem) =>
@@ -57,23 +55,26 @@ const FilterDisplay = () => {
     }
   };
 
-  useEffect(() => {
+  const handleFilterSubmit = () => {
+    setcocktailsFiltered([]);
     getInitialFilter();
-  }, []);
+  };
 
   return (
     <div className="container">
+      <hr></hr>
+      <h3>Please select all 3 parameters and click the submit button</h3>
       <FilterBar
         onCategoryChange={(e) => setfilterCategory(e.target.value)}
         onGlassChange={(e) => setfilterGlass(e.target.value)}
         onAlcoholicChange={(e) => setfilterAlcoholic(e.target.value)}
       ></FilterBar>
-      <button type="submit" onClick={getInitialFilter}>
+      <button type="submit" onClick={handleFilterSubmit}>
         Submit
       </button>
 
       <hr />
-      {cocktailsFiltered.length > 0 && (
+      {cocktailsFiltered.length > 0 ? (
         <div className="row">
           {cocktailsFiltered.map((item, idx) => {
             return (
@@ -86,6 +87,8 @@ const FilterDisplay = () => {
             );
           })}
         </div>
+      ) : (
+        <p>No cocktails found.</p>
       )}
     </div>
   );
