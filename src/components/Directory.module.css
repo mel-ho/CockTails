@@ -2,10 +2,6 @@
   background-color: whitesmoke;
 }
 
-/* .directory nav {
-  height: 100%;
-} */
-
 .directory ul {
   list-style: none;
   display: flex;

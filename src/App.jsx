@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Landing from "./components/Landing";
 import Random from "./components/Random";
 import FilterDisplay from "./components/FilterDisplay";
-import DIY from "./components/DIY";
+import Search from "./components/Search";
 import Directory from "./components/Directory";
 import NavBar from "./components/NavBar";
 import DirectoryByAlpha from "./components/DirectoryByAlpha";
@@ -19,7 +19,7 @@ function App() {
         <Route path="/filter" element={<FilterDisplay />} />
         <Route path="/directory" element={<Directory />} />
         <Route path="/directory/:alpha" element={<DirectoryByAlpha />} />
-        <Route path="/diy" element={<DIY />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/cocktail/:id" element={<CocktailbyID />} />
       </Routes>
     </div>

@@ -35,9 +35,9 @@ const NavBar = () => {
           <li>
             <NavLink
               className={(navData) => (navData.isActive ? styles.active : "")}
-              to="/diy"
+              to="/search"
             >
-              Make-it-yourself
+              Search Cocktail
             </NavLink>
           </li>
         </ul>
