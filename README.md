@@ -26,7 +26,7 @@ Given these, decided on a app that has the four functionalities
 4. Search Function : search by cocktail name to display 1 cocktail
 
 ### Process:
-- not much documentation available for the API, so had to figure out what was the response and how to get it into the format needed
+- not much documentation available for this free API, so had to figure out what was the response and how to get it into the format needed
 - creation of navigation bars and route paths were done used react-router
 - Cocktail of the Day Page: To fetch and display a random cocktail. created a cocktail component so that it could be used subsequently if needed
 - Directory: api had listings based on alphabets. made use of that to pull out the cocktails based on alphabets. useParmas was used to dynamically create the individual pages insted of creating 26 pages.
@@ -35,8 +35,8 @@ Given these, decided on a app that has the four functionalities
 
 ### Current Bugs:
 - Directory: currently if there's no cocktail in the alphabet a blank page is returned (e.g. X). should put in a "no cocktails starting with this alphabet" response (UPDATE: manually removed the two alphabets from the alphabet listing)
-- Filter page: fetch too much data and thus loads slowly. sometimes needs to click the submit button multiple times before a response is obtained. loading spinner would probably be a good addition here.
-- Search page: if cocktail doesn't exist nothing shows. should put in a "cocktail not found" response
+- Filter page: fetch too much data and thus loads slowly. sometimes needs to click the submit button multiple times before a response is obtained. loading spinner would probably be a good addition here. (UPDATE: use promises to simultaneously fetch data from the 3 apis to be compared)
+- Search page: if cocktail doesn't exist nothing shows. should put in a "cocktail not found" response (UPDATE: cocktail not found response added. additional feature to show 5 suggested cocktails added)
 
 ### Future improvements:
 - being able to click into the cocktails for a full listing from the directory (UPDATE: this has been added) and the filter pages.
